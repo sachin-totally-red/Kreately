@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nibbin_app/common/app_variants.dart';
+import 'package:nibbin_app/common/constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatefulWidget {
@@ -53,7 +55,8 @@ class WebViewPageState extends State<WebViewPage>
         /*child: SlideTransition(
           position: _offsetAnimation,*/
         child: Material(
-          shadowColor: Colors.blue,
+          shadowColor: Color(0xFF1A101F),
+          color: Color(0xFF1A101F),
           borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -107,17 +110,22 @@ class WebViewPageState extends State<WebViewPage>
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-          color: Color(0xFF1A101F)
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+        color: Constants.appName == "Kaavya"
+            ? Color(0xFFFFFFFF)
+            : Color(int.parse(
+                AppVariants.completeMap[Constants.appName]["appBarColor"])),
 //        gradient: LinearGradient(
 //            begin: Alignment.topCenter,
 //            end: Alignment.bottomCenter,
 //            colors: [Color(0xFF1A101F), Colors.white]),
-          ),
+      ),
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: 6),
+            padding: EdgeInsets.only(
+              top: 6,
+            ),
             child: SizedBox(
               height: 2,
               child: Container(
@@ -128,18 +136,34 @@ class WebViewPageState extends State<WebViewPage>
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 5),
-            child: Center(
-              child: Text(
-                'Nibbin',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                ),
+          Center(
+            child: Image.asset(
+              AppVariants.completeMap[Constants.appName]["appLogoWhite"],
+              width: MediaQuery.of(context).size.width *
+                  (double.parse(AppVariants.completeMap[Constants.appName]
+                      ["appBarLogoWidthOnWebView"])) /
+                  360,
+              height: MediaQuery.of(context).size.height *
+                  (double.parse(AppVariants.completeMap[Constants.appName]
+                      ["appBarLogoHeightOnWebView"])) /
+                  640,
+            ), /*Text(
+              'Nibbin',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
               ),
-            ),
+            ),*/
           ),
+          if (Constants.appName == "Kaavya")
+            Container(
+              margin: EdgeInsets.only(
+                top: 6,
+              ),
+              height: 1,
+              width: MediaQuery.of(context).size.width * 0.92,
+              color: Color(0xFFD8D8D8),
+            ),
         ],
       ),
     );

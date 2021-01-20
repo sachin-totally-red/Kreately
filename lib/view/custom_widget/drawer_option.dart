@@ -38,13 +38,13 @@ class DrawerOption extends StatelessWidget {
             width: screenSize.width * imageWidth / 360,
           ),
           SizedBox(
-            width: space,
+            width: ScreenUtil().setSp(space, allowFontScalingSelf: true),
           ),
           Text(
             optionName,
             //ToDo: Update this styling
             style: TextStyle(
-              fontSize: ScreenUtil().setSp(12, allowFontScalingSelf: true),
+              fontSize: ScreenUtil().setSp(14, allowFontScalingSelf: true),
               color: Color(0xFF111111),
               fontWeight: FontWeight.w500,
               letterSpacing: 0.14,

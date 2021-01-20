@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:nibbin_app/common/app_variants.dart';
 import 'package:nibbin_app/common/constants.dart';
 import 'package:nibbin_app/model/report_news.dart';
 import 'package:nibbin_app/resource/report_news_repository.dart';
 import 'package:nibbin_app/view/custom_widget/extra_info_reporting_tile.dart';
+import 'package:nibbin_app/view/custom_widget/progress_indicator.dart';
+import 'package:nibbin_app/view/home_page.dart';
 
 int selectedSubTypeID = -1;
 
 Future reportModalBottomSheet(
-    context, int newsID, GlobalKey<ScaffoldState> homePageScaffoldKey) async {
+    context, int newsID, GlobalKey<ScaffoldState> homePageScaffoldKey,
+    {bool homePageWidget = false}) async {
   ReportNewsRepository _reportNewsRepository = ReportNewsRepository();
 
   var response = await _reportNewsRepository.fetchReportingType();
 
   List<Widget> widgetList = prepareReportNewsWidgetList(
-      response, context, newsID, homePageScaffoldKey);
+      response, context, newsID, homePageScaffoldKey, homePageWidget);
 
   return await showModalBottomSheet<dynamic>(
       isScrollControlled: true,
@@ -39,7 +43,8 @@ prepareReportNewsWidgetList(
     List<ReportType> reportTypeList,
     BuildContext context,
     int newsID,
-    GlobalKey<ScaffoldState> homePageScaffoldKey) {
+    GlobalKey<ScaffoldState> homePageScaffoldKey,
+    bool homePageWidget) {
   List<Widget> widgetList = List<Widget>();
 
   widgetList.add(ListTile(
@@ -53,7 +58,7 @@ prepareReportNewsWidgetList(
           fontWeight: FontWeight.w600),
     ),
     trailing: Image.asset(
-      'assets/images/close_circle_icon.png',
+      AppVariants.completeMap[Constants.appName]["reportingCloseButton"],
       height: 19.81,
       width: 19.81,
     ),
@@ -62,9 +67,11 @@ prepareReportNewsWidgetList(
 
   reportTypeList.forEach((reportType) {
     widgetList.add(ReportTypeTile(
-        reportType: reportType,
-        newsID: newsID,
-        homePageScaffoldKey: homePageScaffoldKey));
+      reportType: reportType,
+      newsID: newsID,
+      homePageScaffoldKey: homePageScaffoldKey,
+      homePageWidget: homePageWidget,
+    ));
     widgetList.add(
       Container(
         color: Color(0xFFBDBDBD),
@@ -80,7 +87,12 @@ class ReportTypeTile extends StatelessWidget {
   final ReportType reportType;
   final int newsID;
   final GlobalKey<ScaffoldState> homePageScaffoldKey;
-  ReportTypeTile({this.reportType, this.newsID, this.homePageScaffoldKey});
+  final bool homePageWidget;
+  ReportTypeTile(
+      {this.reportType,
+      this.newsID,
+      this.homePageScaffoldKey,
+      this.homePageWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -101,27 +113,31 @@ class ReportTypeTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.pop(context);
-        _detailedReportModalBottomSheet(
-            context, reportType.subTypes, newsID, homePageScaffoldKey);
+        _detailedReportModalBottomSheet(context, reportType.subTypes, newsID,
+            homePageScaffoldKey, homePageWidget);
       },
     );
   }
 }
 
 Future _detailedReportModalBottomSheet(
-    BuildContext context,
-    List<ReportSubType> reportSubTypeList,
-    int newsID,
-    GlobalKey<ScaffoldState> homePageScaffoldKey) async {
+  BuildContext context,
+  List<ReportSubType> reportSubTypeList,
+  int newsID,
+  GlobalKey<ScaffoldState> homePageScaffoldKey,
+  homePageWidget,
+) async {
   return await showModalBottomSheet<dynamic>(
     isScrollControlled: true,
     context: context,
     backgroundColor: Colors.transparent,
     builder: (BuildContext bc) {
       return DetailedReportNewsPage(
-          reportSubTypeList: reportSubTypeList,
-          newsID: newsID,
-          homePageScaffoldKey: homePageScaffoldKey);
+        reportSubTypeList: reportSubTypeList,
+        newsID: newsID,
+        homePageScaffoldKey: homePageScaffoldKey,
+        homePageWidget: homePageWidget,
+      );
     },
   );
 }
@@ -130,8 +146,12 @@ class DetailedReportNewsPage extends StatefulWidget {
   final List<ReportSubType> reportSubTypeList;
   final int newsID;
   final GlobalKey<ScaffoldState> homePageScaffoldKey;
+  final bool homePageWidget;
   DetailedReportNewsPage(
-      {this.reportSubTypeList, this.newsID, this.homePageScaffoldKey});
+      {this.reportSubTypeList,
+      this.newsID,
+      this.homePageScaffoldKey,
+      this.homePageWidget});
 
   @override
   DetailedReportNewsPageState createState() => DetailedReportNewsPageState();
@@ -139,23 +159,31 @@ class DetailedReportNewsPage extends StatefulWidget {
 
 String groupID;
 DetailedReportNewsPageState detailedReportNewsPageState;
+bool _showLoader = false;
 
 class DetailedReportNewsPageState extends State<DetailedReportNewsPage> {
   @override
   Widget build(BuildContext context) {
     detailedReportNewsPageState = this;
-    List<Widget> widgetList = prepareDetailedReportWidgetList(context,
-        widget.reportSubTypeList, widget.newsID, widget.homePageScaffoldKey);
-    return Container(
-      padding: EdgeInsets.only(left: 16, right: 16, bottom: 0, top: 16),
-      decoration: BoxDecoration(
-          color: Color(0xFFFFFFFF),
-          borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(11),
-              topRight: const Radius.circular(11))),
-      child: SafeArea(
-        child: Wrap(
-          children: widgetList,
+    List<Widget> widgetList = prepareDetailedReportWidgetList(
+        context,
+        widget.reportSubTypeList,
+        widget.newsID,
+        widget.homePageScaffoldKey,
+        widget.homePageWidget);
+    return CustomProgressIndicator(
+      inAsyncCall: _showLoader,
+      child: Container(
+        padding: EdgeInsets.only(left: 16, right: 16, bottom: 0, top: 16),
+        decoration: BoxDecoration(
+            color: Color(0xFFFFFFFF),
+            borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(11),
+                topRight: const Radius.circular(11))),
+        child: SafeArea(
+          child: Wrap(
+            children: widgetList,
+          ),
         ),
       ),
     );
@@ -167,6 +195,7 @@ prepareDetailedReportWidgetList(
   List<ReportSubType> reportSubTypeList,
   int newsID,
   GlobalKey<ScaffoldState> homePageScaffoldKey,
+  bool homePageWidget,
 ) {
   List<Widget> widgetList = List<Widget>();
   widgetList.add(
@@ -186,7 +215,7 @@ prepareDetailedReportWidgetList(
             Navigator.pop(context);
           },
           child: Image.asset(
-            'assets/images/close_circle_icon.png',
+            AppVariants.completeMap[Constants.appName]["reportingCloseButton"],
             height: 19.81,
             width: 19.81,
           ),
@@ -223,8 +252,14 @@ prepareDetailedReportWidgetList(
   widgetList.add(
     Center(
       child: ButtonTheme(
-        height: ScreenUtil().setSp(35, allowFontScalingSelf: true),
-        minWidth: ScreenUtil().setSp(72, allowFontScalingSelf: true),
+        height: ScreenUtil().setSp(
+            double.parse(AppVariants.completeMap[Constants.appName]
+                ["reportNewsDoneButtonHeight"]),
+            allowFontScalingSelf: true),
+        minWidth: ScreenUtil().setSp(
+            double.parse(AppVariants.completeMap[Constants.appName]
+                ["reportNewsDoneButtonWidth"]),
+            allowFontScalingSelf: true),
         child: RaisedButton(
           child: Text(
             "Done",
@@ -234,24 +269,51 @@ prepareDetailedReportWidgetList(
           ),
           textColor: Color(0xFFFFFFFF),
           onPressed: () async {
-            ReportNewsRepository _reportNewsRepository = ReportNewsRepository();
-            var response = await _reportNewsRepository.reportSelectedNews(
-                newsID,
-                reportSubTypeList
-                    .firstWhere(
-                        (element) => element.subTypeID == selectedSubTypeID)
-                    .typeID,
-                selectedSubTypeID);
-            if ((response as Map)["message"] == null) {
-              print(response);
-              Navigator.pop(context);
+            try {
+              if (selectedSubTypeID != -1) {
+                Navigator.pop(context);
+                if (homePageWidget) {
+                  homePageState.setState(() {
+                    showLoader = true;
+                  });
+                }
+                ReportNewsRepository _reportNewsRepository =
+                    ReportNewsRepository();
+
+                var response = await _reportNewsRepository.reportSelectedNews(
+                    newsID,
+                    reportSubTypeList
+                        .firstWhere(
+                            (element) => element.subTypeID == selectedSubTypeID)
+                        .typeID,
+                    selectedSubTypeID);
+                if (homePageWidget) {
+                  homePageState.setState(() {
+                    showLoader = false;
+                  });
+                }
+                selectedSubTypeID = -1;
+                if ((response as Map)["message"] == null) {
+                  print(response);
+                  homePageScaffoldKey.currentState
+                      .showSnackBar(Constants.showReportSuccessSnackBar());
+                }
+              }
+            } catch (e) {
+              if (homePageWidget) {
+                homePageState.setState(() {
+                  showLoader = false;
+                });
+              }
               homePageScaffoldKey.currentState
-                  .showSnackBar(Constants.showReportSuccessSnackBar());
+                  .showSnackBar(Constants.showSnackBar());
             }
           },
-          color: Color(0xFF1A101F),
+          color: Color(int.parse(AppVariants.completeMap[Constants.appName]
+              ["reportNewsDoneButtonColor"])),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(double.parse(AppVariants
+                .completeMap[Constants.appName]["reportNewsDoneButtonRadius"])),
           ),
         ),
       ),

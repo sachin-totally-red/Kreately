@@ -1,8 +1,13 @@
+import 'package:amplitude_flutter/identify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nibbin_app/common/app_variants.dart';
+import 'package:nibbin_app/common/constants.dart' as appConst;
+import 'package:nibbin_app/common/constants.dart';
 import 'package:nibbin_app/common/database_helpers.dart';
 import 'package:nibbin_app/common/version_check.dart';
 import 'package:nibbin_app/model/category.dart';
+import 'package:nibbin_app/resource/amplitude_repository.dart';
 import 'package:nibbin_app/resource/category_repository.dart';
 import 'package:nibbin_app/view/category_selection_page.dart';
 import 'dart:async';
@@ -25,6 +30,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future navigationPage() async {
+    //Initializing Amplitude Instance
+    // AmplitudeRepository _amplitudeRepository = AmplitudeRepository();
+    // await _amplitudeRepository.initializeAmplitude();
+
     CategoryRepository _categoryRepository = CategoryRepository();
     List<SavedCategories> savedCategoriesList =
         await _categoryRepository.fetchAllSavedCategories();
@@ -69,18 +78,30 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 360, height: 640, allowFontScaling: true);
     return Container(
-      color: Color(0xFF000000),
+      decoration: BoxDecoration(
+        color: Color(int.parse(AppVariants
+            .completeMap[appConst.Constants.appName]["statusBarColor"])),
+      ),
       child: SafeArea(
         bottom: false,
         child: Scaffold(
           body: Container(
+            decoration: BoxDecoration(
+              image: new DecorationImage(
+                  image: AssetImage(
+                    AppVariants.completeMap[Constants.appName]
+                        ["appBackgroundImage"],
+                  ),
+                  fit: BoxFit.fill),
+            ),
             width: double.infinity,
             height: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  'assets/images/splash.gif',
+                  AppVariants.completeMap[appConst.Constants.appName]
+                      ["splashImagePath"],
                   height: MediaQuery.of(context).size.height * 77 / 640,
                   width: MediaQuery.of(context).size.width * 209 / 360,
                 )

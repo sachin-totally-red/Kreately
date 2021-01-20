@@ -5,7 +5,8 @@ class SearchRepository {
   APIHandler _apiHandler = APIHandler();
 
   Future fetchSearchedNews(String searchedText) async {
-    Map response = await _apiHandler.getAPICall("news?query=$searchedText");
+    Map response =
+        await _apiHandler.getAPICall("news?query=$searchedText&html=true");
     List<Post> postList =
         response["rows"].map<Post>((i) => Post.fromJson(i)).toList();
     return postList;

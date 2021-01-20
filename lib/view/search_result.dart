@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:nibbin_app/common/app_variants.dart';
+import 'package:nibbin_app/common/constants.dart';
 import 'package:nibbin_app/model/post.dart';
+import 'package:nibbin_app/view/custom_widget/graphics_card.dart';
 import 'package:nibbin_app/view/custom_widget/post_card_widget.dart';
 import 'package:nibbin_app/view/home_page.dart';
-import 'package:nibbin_app/view/search_content/custom_search_delegate.dart';
+import 'search_content/search_news.dart';
 
 class SearchResultPage extends StatelessWidget {
   final SearchedWidget searchedWidget;
@@ -18,29 +21,34 @@ class SearchResultPage extends StatelessWidget {
     this.news,
   });
 
+  final _searchPageScaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF000000),
+      color: Color(int.parse(
+          AppVariants.completeMap[Constants.appName]["statusBarColor"])),
       child: SafeArea(
         bottom: false,
         child: Scaffold(
-          backgroundColor: Color(0xFF1A101F),
+          key: _searchPageScaffoldKey,
+          backgroundColor: Constants.appName == "Kaavya"
+              ? Colors.transparent
+              : Color(0xFF1A101F),
           appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Color(int.parse(
+                AppVariants.completeMap[Constants.appName]["appBarColor"])),
             centerTitle: true,
             title: Image.asset(
-              "assets/images/nibbin_logo_white.png",
-              width: ((homePage != null)
-                      ? homePage.screenSize.width
-                      : (searchedWidget
-                          .customSearchDelegate.homePage.screenSize.width)) *
-                  117 /
+              AppVariants.completeMap[Constants.appName]["appBarImagePath"],
+              width: MediaQuery.of(context).size.width *
+                  (double.parse(AppVariants.completeMap[Constants.appName]
+                      ["appBarLogoWidth"])) /
                   360,
-              height: ((homePage != null)
-                      ? homePage.screenSize.height
-                      : (searchedWidget
-                          .customSearchDelegate.homePage.screenSize.height)) *
-                  42 /
+              height: MediaQuery.of(context).size.height *
+                  (double.parse(AppVariants.completeMap[Constants.appName]
+                      ["appBarLogoHeight"])) /
                   640,
             ),
             leading: IconButton(
@@ -49,7 +57,9 @@ class SearchResultPage extends StatelessWidget {
                   "assets/images/back_arrow.png",
                 ),
                 size: ScreenUtil().setSp(14, allowFontScalingSelf: true),
-                color: Colors.white,
+                color: Constants.appName == "Kaavya"
+                    ? Color(0xFF1A101F)
+                    : Colors.white,
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -57,17 +67,59 @@ class SearchResultPage extends StatelessWidget {
             ),
           ),
           body: Container(
-            color: Color(0xFF1A101F),
+            decoration: BoxDecoration(
+              color: Constants.appName == "Kaavya"
+                  ? Colors.transparent
+                  : Color(0xFF1A101F),
+              image: new DecorationImage(
+                  image: AssetImage(
+                    AppVariants.completeMap[Constants.appName]
+                        ["bookmarkPageBackgroundImage"],
+                  ),
+                  fit: BoxFit.fill),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 15),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  PostCard(
-                    homePage: homePage ??
-                        searchedWidget.customSearchDelegate.homePage,
-                    post: news ?? searchedWidget.searchedNews,
-                    homePageState: homePageState ??
-                        searchedWidget.customSearchDelegate.homePageState,
-                  ),
+                  if ((news == null) &&
+                      (searchedWidget.searchedNews.type == "news"))
+                    PostCard(
+                      homePage: homePage ??
+                          searchedWidget.searchNewsPage.widget.homePage,
+                      post: news ?? searchedWidget.searchedNews,
+                      homePageScaffoldKey: _searchPageScaffoldKey,
+                      homePageState: homePageState ??
+                          searchedWidget.searchNewsPage.widget.homePageState,
+                    )
+                  else if ((news == null) &&
+                      (searchedWidget.searchedNews.type == "graphics"))
+                    GraphicsCard(
+                      homePage: homePage ??
+                          searchedWidget.searchNewsPage.widget.homePage,
+                      post: news ?? searchedWidget.searchedNews,
+                      homePageScaffoldKey: _searchPageScaffoldKey,
+                      homePageState: homePageState ??
+                          searchedWidget.searchNewsPage.widget.homePageState,
+                    )
+                  else if (news.type == "news")
+                    PostCard(
+                      homePage: homePage ??
+                          searchedWidget.searchNewsPage.widget.homePage,
+                      post: news ?? searchedWidget.searchedNews,
+                      homePageScaffoldKey: _searchPageScaffoldKey,
+                      homePageState: homePageState ??
+                          searchedWidget.searchNewsPage.widget.homePageState,
+                    )
+                  else
+                    GraphicsCard(
+                      homePage: homePage ??
+                          searchedWidget.searchNewsPage.widget.homePage,
+                      post: news ?? searchedWidget.searchedNews,
+                      homePageScaffoldKey: _searchPageScaffoldKey,
+                      homePageState: homePageState ??
+                          searchedWidget.searchNewsPage.widget.homePageState,
+                    ),
                 ],
               ),
             ),

@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>993581954800-i57lidp4isrf5i7ejs2u859r8j8898cu.apps.googleusercontent.com</string>
+	<string>457286150085-0unupirul093o9lvu0jmjrv5squpceht.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.993581954800-i57lidp4isrf5i7ejs2u859r8j8898cu</string>
+	<string>com.googleusercontent.apps.457286150085-0unupirul093o9lvu0jmjrv5squpceht</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>993581954800-6cfum7226hahc3k9utemmhdql9f3pl2a.apps.googleusercontent.com</string>
+	<string>457286150085-4aaooep3t35j1m8spg94cnvp99unrh6f.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDEe3raH02oHtUvexvqTNxbPs2teZchw3U</string>
+	<string>AIzaSyDC-CzgXKci6u0tv6jwipIq2oditJxwmCM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>993581954800</string>
+	<string>457286150085</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>in.bluone.app.nibbin</string>
+	<string>in.bluone.app.kaavya</string>
 	<key>PROJECT_ID</key>
-	<string>nibbin-b3ebc</string>
+	<string>kaavya-7de37</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nibbin-b3ebc.appspot.com</string>
+	<string>kaavya-7de37.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:993581954800:ios:fd1450f00823bcab297435</string>
-	<key>DATABASE_URL</key>
-	<string>https://nibbin-b3ebc.firebaseio.com</string>
+	<string>1:457286150085:ios:e8db312312f0c60dd94dac</string>
 </dict>
 </plist>

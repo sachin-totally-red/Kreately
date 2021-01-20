@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:nibbin_app/common/app_variants.dart';
 import 'package:nibbin_app/common/constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -14,17 +15,28 @@ class _TermsConditionPageState extends State<TermsConditionPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF000000),
+      color: Color(int.parse(
+          AppVariants.completeMap[Constants.appName]["statusBarColor"])),
       child: SafeArea(
         bottom: false,
         child: Scaffold(
-          backgroundColor: Color(0xFF1A101F),
+          backgroundColor: Constants.appName == "Kaavya"
+              ? Colors.transparent
+              : Color(int.parse(AppVariants.completeMap[Constants.appName]
+                  ["t&cPageBackgroundColor"])),
           appBar: AppBar(
+            backgroundColor: Color(int.parse(AppVariants
+                .completeMap[Constants.appName]["t&cPageAppBarColor"])),
             centerTitle: false,
             elevation: 0,
             title: Text(
               "Terms & Conditions",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: (Constants.appName == "Kaavya")
+                      ? Color(0xFF1A101F)
+                      : Colors.white),
             ),
             leading: IconButton(
               icon: ImageIcon(
@@ -32,7 +44,9 @@ class _TermsConditionPageState extends State<TermsConditionPage> {
                   "assets/images/back_arrow.png",
                 ),
                 size: ScreenUtil().setSp(14, allowFontScalingSelf: true),
-                color: Colors.white,
+                color: Constants.appName == "Kaavya"
+                    ? Color(0xFF1A101F)
+                    : Colors.white,
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -45,6 +59,14 @@ class _TermsConditionPageState extends State<TermsConditionPage> {
               borderRadius: BorderRadius.circular(11),
             ),
             child: Container(
+              decoration: BoxDecoration(
+                image: new DecorationImage(
+                    image: AssetImage(
+                      AppVariants.completeMap[Constants.appName]
+                          ["searchPageBackgroundImage"],
+                    ),
+                    fit: BoxFit.fill),
+              ),
               height: MediaQuery.of(context).size.height,
               margin: EdgeInsets.all(16),
               child: Stack(

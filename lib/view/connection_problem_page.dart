@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nibbin_app/common/app_variants.dart';
+import 'package:nibbin_app/common/constants.dart';
 import 'package:nibbin_app/view/splash_screen.dart';
 
 class ConnectionProblemPage extends StatefulWidget {
@@ -25,7 +27,7 @@ class _ConnectionProblemPageState extends State<ConnectionProblemPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Image.asset(
-                  'assets/images/nibbin_logo.png',
+                  AppVariants.completeMap[Constants.appName]["appLogo"],
                   height: MediaQuery.of(context).size.height * 77 / 640,
                   width: MediaQuery.of(context).size.width * 209 / 360,
                 ),

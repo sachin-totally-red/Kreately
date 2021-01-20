@@ -1,94 +1,66 @@
 {
   "project_info": {
-    "project_number": "993581954800",
-    "firebase_url": "https://nibbin-b3ebc.firebaseio.com",
-    "project_id": "nibbin-b3ebc",
-    "storage_bucket": "nibbin-b3ebc.appspot.com"
+    "project_number": "457286150085",
+    "project_id": "kaavya-7de37",
+    "storage_bucket": "kaavya-7de37.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:993581954800:android:a20167795ed7d256297435",
+        "mobilesdk_app_id": "1:457286150085:android:332794af5422622ed94dac",
         "android_client_info": {
-          "package_name": "in.bluone.app.nibbin"
+          "package_name": "in.bluone.app.kaavya"
         }
       },
       "oauth_client": [
         {
-          "client_id": "993581954800-nbvbg49nsfeccv244n0tek3cn225b2tc.apps.googleusercontent.com",
+          "client_id": "457286150085-4aaooep3t35j1m8spg94cnvp99unrh6f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "in.bluone.app.nibbin",
+            "package_name": "in.bluone.app.kaavya",
+            "certificate_hash": "95b556379fc3c7884716c5602fb02377faf90f5b"
+          }
+        },
+        {
+          "client_id": "457286150085-gnqn57p1b95fr3otcd4jrgsgv0bh22pv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.bluone.app.kaavya",
             "certificate_hash": "81a762379cb235dc11227cb8a2e38a28db9a1085"
           }
         },
         {
-          "client_id": "993581954800-uvda3dhqpi6cfrkddbvfk1jo7in0r0q5.apps.googleusercontent.com",
+          "client_id": "457286150085-n07ug3hg6gl10cnn53s3rlervg4j815c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.bluone.app.kaavya",
+            "certificate_hash": "9cf56fda32bb5c800032551768f75d74fd77736c"
+          }
+        },
+        {
+          "client_id": "457286150085-vngrj65u6llmee6l40lvi52jlhlpgiqm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.bluone.app.kaavya",
+            "certificate_hash": "1dae5d5aa3e20e01f9ac35811e08104da30283d1"
+          }
+        },
+        {
+          "client_id": "457286150085-5m68rtaba7fjo0emum1pk05l21ls0m3p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDP7W22uaow_LsnvahY3eoe-_d3dcqsXW4"
+          "current_key": "AIzaSyCOltX2t0PpvR3C8UDoV-21vi9EFsXeQNY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "993581954800-uvda3dhqpi6cfrkddbvfk1jo7in0r0q5.apps.googleusercontent.com",
+              "client_id": "457286150085-5m68rtaba7fjo0emum1pk05l21ls0m3p.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "993581954800-i57lidp4isrf5i7ejs2u859r8j8898cu.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "in.bluone.app.nibbin"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:993581954800:android:9378d274fe200688297435",
-        "android_client_info": {
-          "package_name": "in.bluone.nibbin"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "993581954800-6cfum7226hahc3k9utemmhdql9f3pl2a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "in.bluone.nibbin",
-            "certificate_hash": "81a762379cb235dc11227cb8a2e38a28db9a1085"
-          }
-        },
-        {
-          "client_id": "993581954800-uvda3dhqpi6cfrkddbvfk1jo7in0r0q5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDP7W22uaow_LsnvahY3eoe-_d3dcqsXW4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "993581954800-uvda3dhqpi6cfrkddbvfk1jo7in0r0q5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "993581954800-i57lidp4isrf5i7ejs2u859r8j8898cu.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "in.bluone.app.nibbin"
-              }
             }
           ]
         }
