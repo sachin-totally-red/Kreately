@@ -192,6 +192,74 @@ class AppVariants {
       "bookmarkedCardCornerImagePath": "assets/images/kreately/green.png",
       "bookmarkedCardShadowColor": "0xFF959595",
     },
+    "Satya": {
+      "appLogo": "assets/images/kaavya/kaavya_logo.png", //
+      "statusBarColor": "0xFFFEF5DD", //
+      "homePageBackgroundColor": "0xFFFEF5DD", //
+      "appBarLogoWidth": "56", //
+      "appBarLogoHeight": "29", //
+      "searchIcon": "assets/images/kaavya/search.png",
+      "menuIcon": "assets/images/kaavya/menu_icon.png",
+      "menuAndSearchIconColor": "0xFF959595",
+      "appBackgroundImage": "assets/images/kaavya/background_kaavya.png",
+      "homePageBackgroundImage": "assets/images/kaavya/search_background.png",
+      "searchPageBackgroundImage": "assets/images/kaavya/search_background.png",
+      "appLogoWhite": "assets/images/kaavya/kaavya_logo.png",
+      "appBarLogoWidthOnWebView": "40",
+      "appBarLogoHeightOnWebView": "21",
+      "reportingCloseButton":
+      'assets/images/kaavya/close_circle_icon_kaavya.png',
+      "drawerPageBackgroundImage": "assets/images/kaavya/search_background.png",
+      "bookmarkPageBackgroundImage":
+      "assets/images/kaavya/search_background.png",
+      // "bookmarkPageBackgroundColor": "0x00000000",
+
+      "splashImagePath": "assets/images/kaavya/kaavya_logo_1.png",
+      "appBarColor": "0xFFFEF5DD",
+      "loginPageSignInButtonBorderColor": "0xFFB3B3B3",
+      "appBarImagePath": "assets/images/kaavya/kaavya_logo.png",
+      "viewFullArticleColor": "0xFFB44650",
+      "viewFullArticleText": "Read More",
+      "reportNewsDoneButtonWidth": "295",
+      "reportNewsDoneButtonHeight": "55",
+      "reportNewsDoneButtonColor": "0xFFB44650",
+      "reportNewsDoneButtonRadius": "6",
+      "reportNewsRadioButtonColor": "0xFFB44650",
+      "loginPageImagePath": "assets/images/kaavya/login_page_kaavya.png",
+      "loginPageImageHeight": "132",
+      "loginPageImageWidth": "243",
+      "loginPageBackgroundImage": "assets/images/kaavya/search_background.png",
+      "newsCaughtUpCardImagePath":
+      "assets/images/kaavya/news_caught_up_image.png",
+      "bookmarkPageAppBarColor": "0xFFFEF5DD",
+      "noBookmarkSavedImagePath": "assets/images/kaavya/no_search_result.png",
+      "noBookmarkSavedImageHeight": "74",
+      "noBookmarkSavedImageWidth": "110",
+      "bookmarkedNewsBookmarkIcon":
+      "assets/images/kaavya/bookmark_icon_kaavya.png",
+      "t&cPageAppBarColor": "0xFFFEF5DD",
+      "privacyPolicyPageAppBarColor": "0xFFFEF5DD",
+
+      "unbookmarkedNewsBookmarkIcon": "assets/images/ribbon_icon.png",
+      "saveBookmarkSuccessMessageTextColor": "0xFF707070",
+      "saveBookmarkSuccessMessageCloseColor": "0xFFB44650",
+      "searchPageContent":
+      "assets/images/kreately/search_page.png", // A center widget with an image
+      "noBookmarkSavedTextColor": "0xFF333333",
+      "rateCardImagePath": "assets/images/kreately/rate_us_icon.png",
+      "loginPageAppBarColor": "0xFFFFFFFF",
+      "loginPageAppLogoPath": "assets/images/kaavya/kaavya_logo.png",
+      "loginPageBackgroundColor": "0xFFFFFFFF",
+      "loginPageTextColor": "0xFF333333",
+      "bookmarkPageTextColor": "0xFF333333",
+      "privacyPolicyPageBackgroundColor": "0xFFB44650",
+      "t&cPageBackgroundColor": "0xFFB44650",
+      "snackBarColorBackground": "0xFFFFFFFF",
+      "snackBarContentColor": "0xFF707070",
+      "snackBarActionButtonTextColor": "0xFFB44650",
+      "bookmarkedCardCornerImagePath": "assets/images/kreately/green.png",
+      "bookmarkedCardShadowColor": "0xFF959595",
+    },
   };
 }
 

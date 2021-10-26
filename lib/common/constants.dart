@@ -15,7 +15,7 @@ class Constants {
       "https://apps.apple.com/us/app/facebook/id284882215";*/
 
   //TODO: Update below variable, Kreately for Kreately, Nibbin for NIBBIN and Kaavya for Kaavya App.
-  static final String appName = "Kaavya";
+  static final String appName = "Satya";
 
   // Create the instance for Amplitude
   static final Amplitude analytics =
